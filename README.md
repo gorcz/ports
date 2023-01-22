@@ -9,6 +9,7 @@
   - [Build and run](#build-and-run)
   - [Docker image](#docker-image)
   - [Development environment](#development-environment)
+- [Technical test requirements](#technical-test-requirements)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -46,3 +47,9 @@ Project is using `vendor` mode for keeping track of dependencies. If a need for 
 
 The same rule applies when it comes to mocks. If any interface is changed that affects mocks, please commit
 generated `.go` files.
+
+# Technical test requirements
+
+- README.md explains how to run service and test it.
+- A Docker image after compilation contains only binary file for service. Two phase image building is applied.
+- Service handles certain signals correctly and shutdown gracefully.
