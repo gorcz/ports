@@ -70,3 +70,15 @@ precommit: ### Ensure code is ready to be committed
 run: ### Run service
 	@make build
 	./bin/${ELF} $(ARGS)
+
+# DOCKER
+
+image: ### Build docker image
+	@echo "Building ${IMG}"
+	@docker build -f ./docker/Dockerfile -t ${IMG} .
+	@docker tag ${IMG} ${LATEST}
+
+docker-image-run: ### Run service docker container
+	@echo "Running service container ..."
+	@echo "============================="
+	@docker run -p 8080:8080 -it ${IMG} /opt/ports/ports

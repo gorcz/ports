@@ -7,6 +7,7 @@
 - [Installation and Usage](#installation-and-usage)
   - [Prerequisites](#prerequisites)
   - [Build and run](#build-and-run)
+  - [Docker image](#docker-image)
   - [Development environment](#development-environment)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -28,6 +29,11 @@ You can use [asdf](https://asdf-vm.com/) to manage development environment
 * `$ make run` - run port service locally on port 8080
 * `$ make test` - run unit tests
 * `$ make lint` - run various linters
+
+## Docker image
+
+* `$ make image` - build Docker image without publishing it to external registry
+* `$ make docker-image-run` - run ports docker container locally
 
 ## Development environment
 
