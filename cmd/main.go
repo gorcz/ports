@@ -7,7 +7,9 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/gorcz/ports/internal/datastore"
 	"github.com/gorcz/ports/internal/router"
+	"github.com/gorcz/ports/internal/services"
 )
 
 const httpServerPort = 8080
@@ -18,8 +20,11 @@ func main() {
 
 	registerOSSignalHandler(ctx, cancel)
 
-	serviceRouter := router.NewRouter()
-	startHTTPServer(ctx, serviceRouter, httpServerPort)
+	dataStore := datastore.NewMemoryDatastore()
+	portService := services.NewPorts(dataStore)
+	apiRouter := router.NewRouter(portService)
+
+	startHTTPServer(ctx, apiRouter, httpServerPort)
 
 	log.Println("HTTP server stopped gracefully")
 }
