@@ -1,1 +1,1 @@
-GET localhost:8080 /status
+GET http://localhost:8080 /status

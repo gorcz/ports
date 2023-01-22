@@ -2,6 +2,7 @@ package services
 
 import (
 	"context"
+	"log"
 
 	"github.com/gorcz/ports/internal/datastore"
 	"github.com/gorcz/ports/pkg/model/port"
@@ -49,5 +50,10 @@ func (ps *Service) UpsertPorts(ctx context.Context, portIterator port.Iterator) 
 }
 
 func (ps *Service) upsertPort(ctx context.Context, port *port.Port) error {
-	return ps.datastore.UpsertPort(ctx, port)
+	if err := ps.datastore.UpsertPort(ctx, port); err != nil {
+		return err
+	}
+
+	log.Printf("upserted port: %s", port.Code)
+	return nil
 }
